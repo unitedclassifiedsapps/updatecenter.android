@@ -1,0 +1,74 @@
+image: registry.azet.alfa/uc-apps/gitlab-ci-android-fastlane:1.0.4
+
+before_script:
+  - echo "$CI_REPOSITORY_URL"
+  - echo "$CI_PUSH_REPO"
+  - eval $(ssh-agent -s)
+  - ssh-add <(echo "$SSH_PRIVATE_KEY")
+  - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  - git config user.email "gitlab-ci@gitlab.i.etech.sk"
+  - git config user.name "gitlab-ci"
+  - CI_PUSH_REPO=`echo $CI_REPOSITORY_URL | perl -pe 's#.*@(.+?(\:\d+)?)/#git@\1:#'`
+  - git checkout -B "${CI_COMMIT_REF_NAME}" "${CI_COMMIT_SHA}"
+  - git remote set-url --push origin "${CI_PUSH_REPO}"
+  - time export GRADLE_USER_HOME=$(pwd)/.gradle
+  - time export GRADLE_OPTS="$GRADLE_OPTS -Dorg.gradle.daemon=false"
+  - time chmod +x ./gradlew
+  - ./gradlew --stop
+  - fastlane add_plugin property_file_read
+
+cache:
+  key: ${CI_PROJECT_ID}
+  paths:
+  - ${GRADLE_USER_HOME}/caches
+  - ${ANDROID_HOME}
+
+stages:
+  - test
+  - build
+  - deploy
+
+coverage_report:
+  stage: test
+  tags:
+    - docker
+  script:
+    - time fastlane generate_test_report
+    - time fastlane generate_documentation
+  artifacts:
+      paths:
+        - updatecenter-lib/build/reports/jacocoTestReport/html
+        - updatecenter-lib/build/javadoc
+      expire_in: 1 day
+
+build_release:
+  stage: build
+  tags:
+    - docker
+  only:
+    - master
+  script:
+    - time fastlane release_publish
+  artifacts:
+    expire_in: 1w
+    paths:
+      - updatecenter-lib/build/outputs
+
+pages:
+  stage: deploy
+  tags:
+    - docker
+  script:
+    - rm -rf public/coverage
+    - rm -rf public/docs/javadoc
+    - mkdir -p public/coverage
+    - mkdir -p public/docs/javadoc
+    - mv updatecenter-lib/build/reports/jacocoTestReport/html public/coverage
+    - mv updatecenter-lib/build/javadoc  public/docs
+  artifacts:
+    paths:
+      - public
+    expire_in: 1 day
+  only:
+    - master
+

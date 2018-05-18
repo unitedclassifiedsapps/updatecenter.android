@@ -1,0 +1,39 @@
+fastlane_version "1.89.0"
+
+default_platform :android
+
+platform :android do
+  before_all do
+
+  end
+
+  desc "Runs all updacenter library Unit tests"
+  lane :lib_unit_test do
+    gradle(task: ":updatecenter-lib:test")
+  end
+
+  desc "Generates test coverage report"
+  lane :generate_test_report do
+    gradle(task: ":updatecenter-lib:jacocoTestReport")
+    sh('cat ../updatecenter-lib/build/reports/jacocoTestReport/html/index.html')
+  end
+
+  desc "Generates kdoc documentation"
+  lane :generate_documentation do
+    gradle(task: ":updatecenter-lib:dokka")
+  end
+
+  desc "Builds new release"
+  lane :build do
+    gradle(task: ":updatecenter-lib:assembleRelease")
+  end
+
+  desc "Publish release to repo"
+  lane :release_publish do
+    version = property_file_read(file: "../gradle.properties")["VERSION_NAME"]
+    build
+    sh('git tag -m "Release '+version+'" "'+version+'"')
+    sh('git push --tags')
+  end
+
+end
