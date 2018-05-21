@@ -15,7 +15,7 @@ import sk.azet.updatecenter.VersionDataSource
  * @property remoteConfig instance of [FirebaseRemoteConfig] used to fetch remote config values
  * @property currentVersion to check against
  */
-class FirebaseVersionDataSource @JvmOverloads constructor(
+class FirebaseVersionDataSource(
     private val context: Context,
     private val remoteConfig: FirebaseRemoteConfig,
     private val currentVersion: String

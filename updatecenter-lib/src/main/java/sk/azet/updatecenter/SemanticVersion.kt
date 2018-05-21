@@ -4,7 +4,12 @@ package sk.azet.updatecenter
  * Comparable semantic version representation.
  * [Specification](https://semver.org/)
  */
-data class SemanticVersion(val major: Int, val minor: Int, val patch: Int, val tag: String? = null) : Comparable<SemanticVersion> {
+data class SemanticVersion @JvmOverloads constructor(
+    val major: Int,
+    val minor: Int,
+    val patch: Int,
+    val tag: String? = null
+) : Comparable<SemanticVersion> {
 
     override fun compareTo(other: SemanticVersion): Int {
         if (major > other.major) return 1
