@@ -1,4 +1,4 @@
-image: registry.azet.alfa/uc-apps/gitlab-ci-android-fastlane:1.0.4
+image: unitedclassifiedsapps/gitlab-ci-android-fastlane:1.0.4
 
 before_script:
   - echo "$CI_REPOSITORY_URL"

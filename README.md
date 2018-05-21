@@ -1,6 +1,6 @@
 # UpdateCenter
 
-[![pipeline status](https://gitlab.com/unitedclassifiedsapps/updatecenter.android/badges/master/pipeline.svg))](https://gitlab.com/unitedclassifiedsapps/updatecenter.android/commits/master)
+[![pipeline status](https://gitlab.com/unitedclassifiedsapps/updatecenter.android/badges/master/pipeline.svg)](https://gitlab.com/unitedclassifiedsapps/updatecenter.android/commits/master)
 [![coverage report](https://gitlab.com/unitedclassifiedsapps/updatecenter.android/badges/master/coverage.svg)](https://gitlab.com/unitedclassifiedsapps/updatecenter.android/coverage/html)
 
 An app update checking library.
