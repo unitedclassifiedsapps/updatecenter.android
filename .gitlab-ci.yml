@@ -31,6 +31,8 @@ coverage_report:
   stage: test
   tags:
     - docker
+  except:
+    - tags
   script:
     - time fastlane generate_test_report
     - time fastlane generate_documentation
