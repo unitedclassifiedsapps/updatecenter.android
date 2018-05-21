@@ -1,7 +1,8 @@
 # UpdateCenter
 
 [![pipeline status](https://gitlab.com/unitedclassifiedsapps/updatecenter.android/badges/master/pipeline.svg)](https://gitlab.com/unitedclassifiedsapps/updatecenter.android/commits/master)
-[![coverage report](https://gitlab.com/unitedclassifiedsapps/updatecenter.android/badges/master/coverage.svg)](https://gitlab.com/unitedclassifiedsapps/updatecenter.android/coverage/html)
+[![coverage report](https://gitlab.com/unitedclassifiedsapps/updatecenter.android/badges/master/coverage.svg)](https://unitedclassifiedsapps.gitlab.io/updatecenter.android/coverage/html/)
+[![](https://jitpack.io/v/unitedclassifiedsapps/updatecenter.android.svg)](https://jitpack.io/#unitedclassifiedsapps/updatecenter.android)
 
 An app update checking library.
 
@@ -25,7 +26,7 @@ dependencies {
 
 ## Documentation
 
-[Documentation](http://inzercia-mob-app.azet.gitlab/updatecenter.android/docs/javadoc/updatecenter-lib)
+[Documentation](https://unitedclassifiedsapps.gitlab.io/updatecenter.android/docs/javadoc/updatecenter-lib/)
 
 ## How to use
 
