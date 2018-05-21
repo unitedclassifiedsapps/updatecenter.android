@@ -20,7 +20,7 @@ allprojects {
 and:
 ```gradle
 dependencies {
-    compile 'com.github.unitedclassifiedsapps:updatecenter.android:${updateCenterVersion}'
+    implementation 'com.github.unitedclassifiedsapps:updatecenter.android:${updateCenterVersion}'
 }
 ```
 
