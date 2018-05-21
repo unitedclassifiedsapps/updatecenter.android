@@ -4,7 +4,16 @@
 [![coverage report](https://gitlab.com/unitedclassifiedsapps/updatecenter.android/badges/master/coverage.svg)](https://unitedclassifiedsapps.gitlab.io/updatecenter.android/coverage/html/)
 [![](https://jitpack.io/v/unitedclassifiedsapps/updatecenter.android.svg)](https://jitpack.io/#unitedclassifiedsapps/updatecenter.android)
 
-An app update checking library.
+Manage your application updates from remote source (API / Firebase).
+
+UpdateCenter library notifies you when there are new updates for your app. It recognizes:
+* necessary update
+* unnecessary update
+* notification about new version available
+
+Library uses `VersionDataSource` interface that provides necessary values for `OnVersionCheckedListener` . You can implement your own `VersionDataSource` which provides values from any API / XML / ... 
+
+UpdateCenter has implementation of `VersionDataSource` that provides values from Firebase Remote Config ([How to setup](#firebase-configuration)).
 
 ## Download
 
@@ -45,7 +54,7 @@ key:update_center_should_update value:[true/false]
 key:update_center_latest_version value:[semantic version string ex.: 1.2.3]
 ```
 
-By setting up Remote Config Conditions you can control which version gets what value.
+By setting up [Remote Config Conditions][3] you can control which app version gets what value (e.g. version `1.0.0` gets `update_center_must_update` as `true` but version `2.0.0` gets its value as `false`).
 
 ### In app use
 Show in [sample app][1]
