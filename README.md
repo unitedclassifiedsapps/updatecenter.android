@@ -19,7 +19,7 @@ allprojects {
 and:
 ```gradle
 dependencies {
-    compile 'com.github.jitpack:updatecenter.android:1.0.1'
+    compile 'com.github.unitedclassifiedsapps:updatecenter.android:${updateCenterVersion}'
 }
 ```
 
@@ -34,7 +34,7 @@ Setup your app with Firebase as shown [here][2]
 
 Add Firebase remote config dependency:
 ```
-implementation 'com.google.firebase:firebase-config:15.0.2'
+implementation 'com.google.firebase:firebase-config'
 ```
 
 Via Firebase console define following [parameters][3]:

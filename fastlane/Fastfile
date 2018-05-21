@@ -30,7 +30,7 @@ platform :android do
 
   desc "Publish release to repo"
   lane :release_publish do
-    version = property_file_read(file: "../gradle.properties")["VERSION_NAME"]
+    version = property_file_read(file: "gradle.properties")["VERSION_NAME"]
     build
     sh('git tag -m "Release '+version+'" "'+version+'"')
     sh('git push --tags')
