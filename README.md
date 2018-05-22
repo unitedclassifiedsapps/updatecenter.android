@@ -13,7 +13,7 @@ UpdateCenter library notifies you when there are new updates for your app. It re
 
 Library uses `VersionDataSource` interface that provides necessary values for `OnVersionCheckedListener` . You can implement your own `VersionDataSource` which provides values from any API / XML / ... 
 
-UpdateCenter has implementation of `VersionDataSource` that provides values from Firebase Remote Config ([How to setup](#firebase-configuration)).
+UpdateCenter has implementation of `FirebaseVersionDataSource` that provides values from Firebase Remote Config ([How to setup](#firebase-configuration)).
 
 ## Download
 
