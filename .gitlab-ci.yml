@@ -6,9 +6,7 @@ before_script:
   - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   - git config user.email "gitlab-ci@gitlab.i.etech.sk"
   - git config user.name "gitlab-ci"
-  - CI_PUSH_REPO=`echo $CI_REPOSITORY_URL | perl -pe 's#.*@(.+?(\:\d+)?)/#git@\1:#'`
-  - echo "$CI_REPOSITORY_URL"
-  - echo "$CI_PUSH_REPO"
+  - CI_PUSH_REPO=`echo $CI_REPOSITORY_URL | perl -pe 's#.*@gitlab\.com\/(.+?(\:\d+)?)/#git\@github.com:\1/#'`
   - git checkout -B "${CI_COMMIT_REF_NAME}" "${CI_COMMIT_SHA}"
   - git remote set-url --push origin "${CI_PUSH_REPO}"
   - time export GRADLE_USER_HOME=$(pwd)/.gradle
