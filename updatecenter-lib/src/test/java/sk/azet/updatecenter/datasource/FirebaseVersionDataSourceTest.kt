@@ -60,8 +60,10 @@ class FirebaseVersionDataSourceTest {
     fun successfulFetch() {
         `when`(sharedPreferences.getString(ArgumentMatchers.anyString(), ArgumentMatchers.any())).thenReturn(null)
         `when`(mockTask.isSuccessful).thenReturn(true)
+
         var succesCount = 0
         var failedCount = 0
+
         dataSource.getUpdateValues(
             onSuccess = { mustUpdate: Boolean, shouldUpdate: Boolean, currentVersion: SemanticVersion, latestVersion: SemanticVersion ->
                 succesCount++
@@ -70,6 +72,7 @@ class FirebaseVersionDataSourceTest {
                 failedCount++
             })
         onSuccessListener.value.onComplete(mockTask)
+
         Assert.assertEquals(succesCount, 1)
         Assert.assertEquals(failedCount, 0)
     }
@@ -78,8 +81,10 @@ class FirebaseVersionDataSourceTest {
     fun failedFetch() {
         `when`(sharedPreferences.getString(ArgumentMatchers.anyString(), ArgumentMatchers.any())).thenReturn("0.0.0")
         `when`(mockTask.isSuccessful).thenReturn(false)
+
         var successCount = 0
         var failedCount = 0
+
         dataSource.getUpdateValues(
             onSuccess = { mustUpdate: Boolean, shouldUpdate: Boolean, currentVersion: SemanticVersion, latestVersion: SemanticVersion ->
                 successCount++
@@ -88,6 +93,7 @@ class FirebaseVersionDataSourceTest {
                 failedCount++
             })
         onSuccessListener.value.onComplete(mockTask)
+
         Assert.assertEquals(successCount, 0)
         Assert.assertEquals(failedCount, 1)
     }

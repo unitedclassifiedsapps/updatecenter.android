@@ -55,17 +55,14 @@ android {
             testCoverageEnabled true
         }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
+
     testOptions {
         unitTests.returnDefaultValues = true
     }
 }
 
-def FIREBASE_CONFIG = "16.0.0"
-def FIREBASE_CORE = "16.0.1"
+def firebaseConfigVersion = "16.0.0"
+def firebaseCoreVersion = "16.0.1"
 def mockitoVersion = "2.10.0"
 def junitVersion = "4.12"
 
@@ -76,8 +73,8 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     //fitebase
-    implementation "com.google.firebase:firebase-core:$FIREBASE_CORE"
-    implementation "com.google.firebase:firebase-config:$FIREBASE_CONFIG"
+    implementation "com.google.firebase:firebase-core:$firebaseCoreVersion"
+    implementation "com.google.firebase:firebase-config:$firebaseConfigVersion"
 
     //test
     testImplementation "junit:junit:$junitVersion"
