@@ -55,6 +55,9 @@ class FirebaseVersionDataSource(
                 Log.i(TAG, "Fetch Succeeded")
                 remoteConfig.activateFetched()
                 Log.i(TAG, "Must update: \"$mustUpdateValue\" Should update: \"$shouldUpdateValue\" Latest Version: \"$latestVersion\"")
+                if (latestVersion == SemanticVersion(0, 0, 0)) {
+                    Log.w(TAG, "Latest fetched version $latestVersion equals to 0.0.0, check your remote config configuration.")
+                }
                 onSuccess(
                     mustUpdateValue,
                     shouldUpdateValue,

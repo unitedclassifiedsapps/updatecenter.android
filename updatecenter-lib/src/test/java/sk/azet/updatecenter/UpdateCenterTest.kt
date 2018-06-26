@@ -59,7 +59,7 @@ class UpdateCenterTest {
         val uc = UpdateCenter(dataSource, listener)
         uc.check()
 
-        assertTrue(listener.mustUpdateCallCount == 1)
+        assertTrue(listener.mustUpdateCallCount == 0)
         assertTrue(listener.shouldUpdateCallCount == 0)
         assertTrue(listener.notLatestCallCount == 0)
     }
@@ -94,7 +94,7 @@ class UpdateCenterTest {
         uc.check()
 
         assertTrue(listener.mustUpdateCallCount == 0)
-        assertTrue(listener.shouldUpdateCallCount == 1)
+        assertTrue(listener.shouldUpdateCallCount == 0)
         assertTrue(listener.notLatestCallCount == 0)
     }
 

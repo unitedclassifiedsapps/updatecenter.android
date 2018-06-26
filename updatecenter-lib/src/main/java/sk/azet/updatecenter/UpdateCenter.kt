@@ -12,16 +12,12 @@ class UpdateCenter(val versionDataSource: VersionDataSource, val onVersionChecke
     fun check() {
         versionDataSource.getUpdateValues(
             onSuccess = { mustUpdate: Boolean, shouldUpdate: Boolean, currentVersion: SemanticVersion, latestVersion: SemanticVersion ->
-                if (mustUpdate) {
-                    onVersionCheckedListener.mustUpdate(currentVersion.toString(), latestVersion.toString())
-                    return@getUpdateValues
-                }
-                if (shouldUpdate) {
-                    onVersionCheckedListener.shouldUpdate(currentVersion.toString(), latestVersion.toString())
-                    return@getUpdateValues
-                }
                 if (versionDataSource.currentLocalVersion < latestVersion) {
-                    onVersionCheckedListener.notLatestVersion(currentVersion.toString(), latestVersion.toString())
+                    when {
+                        mustUpdate -> onVersionCheckedListener.mustUpdate(currentVersion.toString(), latestVersion.toString())
+                        shouldUpdate -> onVersionCheckedListener.shouldUpdate(currentVersion.toString(), latestVersion.toString())
+                        else -> onVersionCheckedListener.notLatestVersion(currentVersion.toString(), latestVersion.toString())
+                    }
                 }
             },
             onError = { currentVersion: SemanticVersion, exception ->
