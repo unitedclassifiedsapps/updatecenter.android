@@ -22,15 +22,17 @@ android {
     }
 }
 
-def FIREBASE = "15.0.2"
+def FIREBASE_CONFIG = "16.0.0"
+def FIREBASE_CORE = "16.0.1"
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation project(':updatecenter-lib')
 
+    implementation "com.google.firebase:firebase-core:$FIREBASE_CORE"
     //remote config
-    implementation "com.google.firebase:firebase-config:$FIREBASE"
+    implementation "com.google.firebase:firebase-config:$FIREBASE_CONFIG"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:27.1.1'
